@@ -13,7 +13,6 @@ def main():
     plt.imshow(img, cmap='gray', interpolation='bicubic')
     plt.plot([50, 100], [200, 100], 'c', linewidth=5)
     plt.show()
-    
 
 if __name__ == '__main__':
     main()
