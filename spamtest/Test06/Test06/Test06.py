@@ -34,6 +34,8 @@ cv2.createTrackbar("Max GREEN", "Tracking", 255, 255, g_max)
 # Red value 
 cv2.createTrackbar("Min RED", "Tracking", 0, 255, r_min)
 cv2.createTrackbar("Max RED", "Tracking", 255, 255, r_max)
+
+
 # If the input is the camera, pass 0 instead of the video file name
 cap = cv2.VideoCapture(0) 
 # Check if camera opened successfully

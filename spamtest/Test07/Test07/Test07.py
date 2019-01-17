@@ -1,16 +1,19 @@
+## Import modules
 import cv2
 import numpy as np
 import time
-## Declare
+
+
+## FUNCTIONS
 def Mouse_event(event, x, y, f, frame):
     if event == cv2.EVENT_LBUTTONDOWN:
         Mouse_event.x0 = x 
         Mouse_event.y0 = y 
-        Mouse_event.draw = True
+        Mouse_event.isdraw = True
     if event == cv2.EVENT_LBUTTONUP:
         Mouse_event.x1 = x 
         Mouse_event.y1 = y 
-        Mouse_event.draw = False
+        Mouse_event.isdraw = False
         min_y = min([Mouse_event.y0, Mouse_event.y1])
         min_x = min([Mouse_event.x0, Mouse_event.x1])
         max_y = max([Mouse_event.y0, Mouse_event.y1])
@@ -19,6 +22,8 @@ def Mouse_event(event, x, y, f, frame):
     if event == cv2.EVENT_MOUSEMOVE:
         Mouse_event.x = x 
         Mouse_event.y = y 
+
+## Declare global variables
 Mouse_event.frame = None
 Mouse_event.x0 = 0 
 Mouse_event.y0 = 0 
@@ -26,11 +31,14 @@ Mouse_event.x1 = 0
 Mouse_event.y1 = 0
 Mouse_event.x = 0
 Mouse_event.y = 0
-Mouse_event.draw = False
+Mouse_event.isdraw = False
+
 
 cap = cv2.VideoCapture(0)
+
 if (cap.isOpened() == False):
     print("ERROR!")
+
 while(cap.isOpened()):
     ret, frame = cap.read()
     frame = cv2.flip(frame, 1)
@@ -38,7 +46,7 @@ while(cap.isOpened()):
     if ret == True:
         ## BEGIN
         #frame_tmp = cv2.cvtColor(frame_cop, cv2.COLOR_BGR2GRAY)
-        if Mouse_event.draw:
+        if Mouse_event.isdraw:
             frame_tmp = cv2.rectangle(frame_tmp, (Mouse_event.x0, Mouse_event.y0), (Mouse_event.x, Mouse_event.y), (0, 255, 0), 1)
         if Mouse_event.frame is not None:
             match = cv2.matchTemplate(frame_tmp, Mouse_event.frame, cv2.TM_CCORR_NORMED)

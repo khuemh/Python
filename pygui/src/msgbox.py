@@ -21,7 +21,7 @@ class App(QWidget):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
         self.show()
-
+        
 
     def init_button(self):
         button = QPushButton(self)
@@ -29,7 +29,7 @@ class App(QWidget):
         button.move(100, 200)
         button.clicked.connect(self.msgshow)
         self.show()
-
+        
     
     def init_msgbox(self):
         message = QMessageBox.question(self, 'Message', 'Do you want to fuck off?', 
@@ -42,6 +42,7 @@ class App(QWidget):
         elif message == QMessageBox.Cancel:
             print('Cancel')
         self.show()    
+    
 
     @pyqtSlot()
     def msgshow(self):
